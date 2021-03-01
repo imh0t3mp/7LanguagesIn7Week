@@ -41,8 +41,18 @@
 
 Код, по сути, является выдержкой и компиляцией из разных просмотренных на GitHub файлов.
 
-### 2. Плагны и прочее
+### 2. Плагины и прочее
 
 Установил плагин [walkme.ruby-extension-pack](https://marketplace.visualstudio.com/items?itemName=walkme.Ruby-extension-pack)
 
 > ext install walkme.Ruby-extension-pack
+
+Дополнительно нужно доустановить:
+
+**rubocop**
+
+> sudo apt install rubocop
+
+**solargraph**
+
+> gem install solargraph
