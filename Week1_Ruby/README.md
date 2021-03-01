@@ -49,10 +49,10 @@
 
 Дополнительно нужно доустановить:
 
-**rubocop**
+#### **rubocop**
 
 > sudo apt install rubocop
 
-**solargraph**
+#### **solargraph**
 
 > gem install solargraph
