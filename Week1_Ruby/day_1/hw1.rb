@@ -1,5 +1,3 @@
 #!/usr/bin/ruby -w
 
-
-
-#1 - print "Hello Wor"
+# 1 - print "Hello Wor"

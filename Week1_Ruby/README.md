@@ -53,9 +53,10 @@
 
 > sudo apt install rubocop
 
-#### **solargraph**
+#### **solargraph** + **reek**
 
 > gem install solargraph
+> gem install reek
 
 ## День 1 - в поисках Няни
 
@@ -161,3 +162,27 @@ number, telling the player whether the guess is too low or too high.
 > (Hint: rand(10) will generate a random number from 0 to 9, and
 > gets will read a string from the keyboard that you can translate to
 > an integer.)
+
+## День 2 - спустившись с небес (Floating Down from the Sky)
+
+### Данные, массивы и прочее
+
+Перед работой с массивом, его нужно создать.
+Для создания массива нужно указать, что переменная это массива
+
+```Ruby
+a = []
+a.class
+```
+
+Можно делать массив массивов.
+А есть хеши.
+Хеш отличается от массива тем, что в качестве имени поля может быть не только число но и строках
+
+```Ruby
+stuff = {:array => [1, 2, 3], :string => 'Hi, mom!'}
+```
+
+Здесь символьное имя ключа начинается с символа двоеточия.
+
+Хмм, где-то я это уже видел? Ааа, конечно, всё очень сильно похоже на **Perl**

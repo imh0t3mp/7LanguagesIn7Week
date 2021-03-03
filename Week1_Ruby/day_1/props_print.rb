@@ -1,3 +1,4 @@
+#!/usr/bin/ruby -w
 
 # Вывести текст по содержимому массива
 properties = ['object oriented', 'duck typed', 'productive', 'fun']
