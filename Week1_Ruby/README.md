@@ -215,3 +215,79 @@ def fall_the_block(&block)
   block.call
 end
 ```
+
+### Классы
+
+Всё - суть объект.
+При создани классов следуют ряду соглашений:
+
+1. Имя класса всегда начинается с заглавной буквы и вообще, в именах классов следуют CamelCase способу именования
+2. Константы всегда должны быть запсианы заглавными буквами CONST_NAME
+3. Имена переменных и методов разделяют символом нижнего подчеркивания
+4. Для отделения переменных экземпляра класса от локальных переменных, перед переменными экземпляра ставят @ а перед переменными класса @@
+
+### modules
+
+_modules_ это коллекции переменных, констант и методов, которые можно переиспользовать, например, при создании своих собственных классов. _modules_ в **Ruby** это эквивалент _interface_ из **Java**
+
+```Ruby
+module ToFile
+  def filename
+    "object_#{self.object_id}.txt"
+  end
+
+  def to_f
+    File.open(filename, 'w' ) {|f| f.write(to_s)}
+  end
+end
+
+class Person
+  include ToFile
+  attr_accessor :name
+  def initialize(name)
+    @name = name
+  end
+  def to_s
+    name
+  end
+end
+
+
+Person.new('matz' ).to_f
+```
+
+Два самых важных, пожалуй самых важных, модуля:
+
+- _comparable_ - содержит методы, которые нужны при сравнении двух объектов класса. Модуль содержит оператор _**<=>**_, который возвращает
+  * -1 если A < B
+  * 1 если A > B
+  * 0 если A == B
+- _enumirate_ - содержит метод _each_
+
+Вообще, в документации описано множество модулей. Среди полезных можно отметить также: _collect_ и _map_
+
+### Задание
+
+#### Find:
+* Find out how to access files with and without code blocks. What
+is the benefit of the code block?
+ow would you translate a hash to an array? Can you translate
+arrays to hashes?
+* Can you iterate through a hash?
+* You can use Ruby arrays as stacks. What other common data
+structures do arrays support?
+
+#### Do:
+
+* Print the contents of an array of sixteen numbers, four numbers
+at a time, using just each . Now, do the same with each_slice in
+Enumerable .
+* The Tree class was interesting, but it did not allow you to specify
+a new tree with a clean user interface. Let the initializer accept a
+nested structure with hashes and arrays. You should be able to
+specify a tree like this: {’grandpa’ => { ’dad’ => {’child 1’ => {}, ’child
+2’ => {} }, ’uncle’ => {’child 3’ => {}, ’child 4’ => {} } } }.
+* Write a simple grep that will print the lines of a file having any
+occurrences of a phrase anywhere in that line. You will need to do
+a simple regular expression match and read lines from a file. (This
+is surprisingly simple in Ruby.) If you want, include line numbers.
