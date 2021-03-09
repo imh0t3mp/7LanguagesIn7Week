@@ -1,0 +1,7 @@
+first, last, country
+Yukihiro, Matsumoto, Japan
+Bruce, Tate, USA
+Bill, Gates, USA
+Nil, Armstrong, USA
+Vladimir, Pupkin, ExUSSR
+Vladimir, Shabalin. Russia
