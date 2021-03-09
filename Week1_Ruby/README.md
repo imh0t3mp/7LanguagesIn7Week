@@ -190,7 +190,7 @@ number, telling the player whether the guess is too low or too high.
 
 ### Символы
 
-Символ — это неизменяемая строка. Символьные литералы записываются с префиксом «:» (двоеточие).
+Символ — это неизменяемая строка. Символьные литералы записываются с префиксом **:** (двоеточие).
 
 ```ruby
 sym = :monday # :monday — это символ
@@ -217,7 +217,7 @@ a.class
 Хеш отличается от массива тем, что в качестве имени поля может быть не только число но и строках
 
 ```Ruby
-stuff = {:array => [1, 2, 3], :string => 'Hi, mom!'}
+stuff = {:array => [1, 2, 3], :string => 'Hi, Mom!'}
 ```
 
 Здесь символьное имя ключа начинается с символа двоеточия.
@@ -472,3 +472,22 @@ puts 2.feet.forward
 С одной стороны, это замедляет, может замедлять, работу программы. С другой, даёт в руки инструмент для гибкого реагрования на ситуацию.
 
 Но, цена высока. При использовании магии метода *method_missing* мы рассплачиваемся простотой отладки. При неосторожном использовании, можно погрязнуть в дебрях отладки и поиска ошибок.
+
+### Задание
+
+#### Do
+
+Modify the CSV application to support an each method to return a
+CsvRow object. Use method_missing on that CsvRow to return the value
+for the column for a given heading.
+For example, for the file:
+
+> one, two
+> lions, tigers
+
+allow an API that works like this:
+
+> csv = RubyCsv.new
+> csv.each {|row| puts row.one}
+
+This should print "lions".
