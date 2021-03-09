@@ -291,3 +291,51 @@ specify a tree like this: {’grandpa’ => { ’dad’ => {’child 1’ => {},
 occurrences of a phrase anywhere in that line. You will need to do
 a simple regular expression match and read lines from a file. (This
 is surprisingly simple in Ruby.) If you want, include line numbers.
+
+
+## День 3 - серьезные переменными
+
+(!) Хмм
+Каждый язык программирования разработан с какой-то целью и хорош для решения определённых задач. По заявлению автора книги, **Ruby** хорош в задачах _**метапрограммирования**_
+
+> _**Метапрограммирование**_ - это написание программ которые пишут программы.
+
+### Открытые для модификации классы
+
+**Ruby** позволяет переопределить любой, абсолютно любой класс. Можно переопределить даже корневой класс самого языка.
+
+Например вот так:
+
+```Ruby
+class Numeric
+  def inches
+    self
+  end
+  def feet
+    self * 12.inches
+  end
+  def yards
+    self * 3.feet
+  end
+  def miles
+    self * 5280.feet
+  end
+  def back
+    self * -1
+  end
+  def forward
+    self
+  end
+end
+
+puts 10.miles.back
+puts 2.feet.forward
+```
+
+**(!) Но, со свободой приходит и ответственность.**
+
+
+### method_missing
+
+Каждый раз, когда **Ruby** не находит вызываемый метод, происходит вызов специального отладочного метода *method_missing*
+С одной стороны, это замедляет, может замедлять, работу программы. С другой, даёт в руки инструмент для гибкого реагрования на ситуацию.
