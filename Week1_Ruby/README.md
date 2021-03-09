@@ -165,6 +165,43 @@ number, telling the player whether the guess is too low or too high.
 
 ## День 2 - спустившись с небес (Floating Down from the Sky)
 
+## Соглашения об именовании
+
+> (!) Внимание
+> Этот блок целиком скопирован из раздела [Wiki](https://ru.wikipedia.org/wiki/Ruby#%D0%A1%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
+
+Идентификаторы традиционно должны состоять из букв, цифр и знаков подчёркивания и начинаться с буквы или знака подчёркивания. Ruby использует соглашение об именовании:
+
+- Имена, начинающиеся с прописной буквы, обозначают константы и классы.
+
+- Имена, начинающиеся со строчной буквы или одиночного знака подчёркивания, обозначают локальные переменные и методы класса.
+
+Также используются префиксы имён, определяющие область видимости идентификатора:
+
+- Префикс **@** обозначает переменную экземпляра.
+- Префикс **@@** обозначает переменную класса.
+- Префикс **$** обозначает глобальную переменную или константу. Также он используется в именах предопределённых системных переменных.
+- Префикс **:** обозначает символ (экземпляр класса Symbol).
+
+Для имён методов применяются суффиксы, обозначающие назначение метода:
+
+- Суффикс **!** обозначает деструктивный метод класса, то есть такой метод, вызов которого изменяет объект, для которого он вызван.
+- Суффикс **?** обозначает предикат, то есть метод класса, возвращающий логическое значение.
+
+### Символы
+
+Символ — это неизменяемая строка. Символьные литералы записываются с префиксом «:» (двоеточие).
+
+```ruby
+sym = :monday # :monday — это символ
+puts sym      # ==> monday
+puts :sunday  # ==> sunday
+und = :"Unknown\tday of week" # Символ в кавычках может содержать пробелы и спецсимволы
+# для символов работает получение срезов
+puts und[8,6] # ==> day of
+und[7] = ' '  # ОШИБКА! Символы неизменяемы.
+```
+
 ### Данные, массивы и прочее
 
 Перед работой с массивом, его нужно создать.
@@ -222,9 +259,55 @@ end
 При создани классов следуют ряду соглашений:
 
 1. Имя класса всегда начинается с заглавной буквы и вообще, в именах классов следуют CamelCase способу именования
-2. Константы всегда должны быть запсианы заглавными буквами CONST_NAME
+2. Константы всегда должны быть записаны заглавными буквами CONST_NAME
 3. Имена переменных и методов разделяют символом нижнего подчеркивания
 4. Для отделения переменных экземпляра класса от локальных переменных, перед переменными экземпляра ставят @ а перед переменными класса @@
+
+```ruby
+class Person < Object       # класс Person наследуется от Object
+   include Comparable        # подмешивание методов экземпляра из модуля Comparable
+
+   @variable                 # переменная экземпляра
+   @@count_obj = 0           # переменная класса для подсчёта числа созданных объектов
+                             #
+   def initialize(name, age) # конструктор (name, age - параметры метода)
+     @name, @age = name, age # создаём объекты
+     @@count_obj += 1        # увеличиваем счётчик на 1
+   end
+
+   def <=>(person)           # переопределение оператора <=>
+     @age <=> person.age     # из метода возвращается последнее вычисленное выражение
+   end
+
+   def to_s                  # для форматированного вывода информации puts
+     "#{@name} (#{@age})"    # конструкция #{x} в 2-х кавычках замещается в строке текстовым значением x
+   end
+
+   def inspect               # метод используется интерпретатором для диагностического вывода
+     "<#{@@count_obj}:#{to_s}>"
+   end
+
+   attr_reader :name, :age   # создание методов доступа на чтение для полей
+ end
+
+ # Создание массива экземпляров класса Person
+ group = [ Person.new("John", 20),
+          Person.new("Markus", 63),
+          Person.new("Ash", 16) ]
+ # для вывода автоматически вызывается метод inspect
+ # => [<3:John (20)>, <3:Markus (63)>, <3:Ash (16)>]
+
+ # сортировка и "переворачивание" массива стандартными методами
+ # работает благодаря переопределению оператора <=>
+ puts group.sort.reverse # Печатает:
+                         # Markus (63)
+                         # John (20)
+                         # Ash (16)
+ # метод between добавлен неявно при подключении Comparable
+ group[0].between?(group[2], group[1]) # => true
+```
+
+Классы в **Ruby** поддерживают только единичное наследование. Множественное наследование возможно реализовать либо чечрез _модули_ либо через _примеси_
 
 ### modules
 
@@ -259,39 +342,88 @@ Person.new('matz' ).to_f
 Два самых важных, пожалуй самых важных, модуля:
 
 - _comparable_ - содержит методы, которые нужны при сравнении двух объектов класса. Модуль содержит оператор _**<=>**_, который возвращает
-  * -1 если A < B
-  * 1 если A > B
-  * 0 если A == B
+  - -1 если A < B
+  - 1 если A > B
+  - 0 если A == B
 - _enumirate_ - содержит метод _each_
 
 Вообще, в документации описано множество модулей. Среди полезных можно отметить также: _collect_ и _map_
 
+Включать модули в классы можно двумя способами:
+
+#### include
+
+```Ruby
+module A
+  def a1
+    puts "a1 from module"
+  end
+end
+
+class Test
+  include A
+
+  def a1
+    puts "a1 from class"
+  end
+end
+
+test = Test.new
+test.a1
+```
+
+При подключении модуля с использованием _**include**_, будет производиться поиск методов __сначала__ в классе а __потом__ в модуле.
+
+#### prepend
+
+```Ruby
+module A
+  def a1
+    puts "a1 from module"
+  end
+end
+
+class Test
+  prepend A
+
+  def a1
+    puts "a1 from class"
+  end
+end
+
+test = Test.new
+test.a1
+```
+
+При подключении модуля с использованием _**prepend**_, будет производиться поиск методов __сначала__ в модуле а __потом__ в классе.
+
+
 ### Задание
 
-#### Find:
-* Find out how to access files with and without code blocks. What
+#### Find
+
+- Find out how to access files with and without code blocks. What
 is the benefit of the code block?
 ow would you translate a hash to an array? Can you translate
 arrays to hashes?
-* Can you iterate through a hash?
-* You can use Ruby arrays as stacks. What other common data
+- Can you iterate through a hash?
+- You can use Ruby arrays as stacks. What other common data
 structures do arrays support?
 
-#### Do:
+#### Do
 
-* Print the contents of an array of sixteen numbers, four numbers
+- Print the contents of an array of sixteen numbers, four numbers
 at a time, using just each . Now, do the same with each_slice in
 Enumerable .
-* The Tree class was interesting, but it did not allow you to specify
+- The Tree class was interesting, but it did not allow you to specify
 a new tree with a clean user interface. Let the initializer accept a
 nested structure with hashes and arrays. You should be able to
 specify a tree like this: {’grandpa’ => { ’dad’ => {’child 1’ => {}, ’child
 2’ => {} }, ’uncle’ => {’child 3’ => {}, ’child 4’ => {} } } }.
-* Write a simple grep that will print the lines of a file having any
+- Write a simple grep that will print the lines of a file having any
 occurrences of a phrase anywhere in that line. You will need to do
 a simple regular expression match and read lines from a file. (This
 is surprisingly simple in Ruby.) If you want, include line numbers.
-
 
 ## День 3 - серьезные переменными
 
@@ -334,8 +466,9 @@ puts 2.feet.forward
 
 **(!) Но, со свободой приходит и ответственность.**
 
-
 ### method_missing
 
 Каждый раз, когда **Ruby** не находит вызываемый метод, происходит вызов специального отладочного метода *method_missing*
 С одной стороны, это замедляет, может замедлять, работу программы. С другой, даёт в руки инструмент для гибкого реагрования на ситуацию.
+
+Но, цена высока. При использовании магии метода *method_missing* мы рассплачиваемся простотой отладки. При неосторожном использовании, можно погрязнуть в дебрях отладки и поиска ошибок.
