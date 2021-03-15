@@ -136,3 +136,62 @@ the basic ground rules:
 * Объекты имеют слоты
 * Сообщение возвращает значение в слот или вызывает метод в слот
 * Если объект можетответить сообщением, то он отправляет сообщение в его прототип
+
+### Коллекции
+
+В **Io** есть два типа коллекций:
+
+1. _**List**_ - упорядоченный набор объектов любых типов. _**List**_ - прототип для всех сортированных списков
+2. _**Map**_ - прототип для пар ключ=>значение
+
+```Io
+toDos := list("find my car", "find Continuum Transfunctioner")
+```
+
+List:
+
+```code
+Io> list(1, 2, 3, 4)
+==> list(1, 2, 3, 4)
+Io> list(1, 2, 3, 4) average
+==> 2.5
+Io> list(1, 2, 3, 4) sum
+==> 10
+Io> list(1, 2, 3) at(1)
+==> 2
+Io> list(1, 2, 3) append(4)
+==> list(1, 2, 3, 4)
+Io> list(1, 2, 3) pop
+==> 3
+Io> list(1, 2, 3) prepend(0)
+==> list(0, 1, 2, 3)
+Io> list() isEmpty
+==> true
+```
+
+Map:
+
+```code
+o> elvis := Map clone
+==> Map_0x115f580:
+Io> elvis atPut("home", "Graceland")
+==> Map_0x115f580:
+Io> elvis at("home")
+==> Graceland
+Io> elvis atPut("style", "rock and roll")
+==> Map_0x115f580:
+Io> elvis asObject
+==> Object_0x11c1d90:
+home
+= "Graceland"
+style
+= "rock and roll"
+Io> elvis asList
+==> list(list("style", "rock and roll"), list("home", "Graceland"))
+Io> elvis keys
+==> list("style", "home")
+Io> elvis size
+==> 2
+```
+
+_**List**_ и _**Map**_ можно комбинровать с сложносоставные объекты
