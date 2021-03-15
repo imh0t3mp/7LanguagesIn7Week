@@ -98,3 +98,15 @@ Io> ferrari slotNames
 
 > (!) Внимание
 > Тип в **Io** это то, что имеет в своём составе слот _Type_
+
+### Методы
+
+Методы в **Io** создаются так же просто, как и объекты:
+
+```code
+Io> method("So, you've come for an argument." println)
+==> method(
+"So, you've come for an argument." println
+)
+```
+Вуа-ля, метод готов!
