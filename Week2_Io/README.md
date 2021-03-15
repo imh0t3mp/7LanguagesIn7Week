@@ -195,3 +195,57 @@ Io> elvis size
 ```
 
 _**List**_ и _**Map**_ можно комбинровать с сложносоставные объекты
+
+### true, false, nil, and singletons
+
+```code
+4 < 5
+true
+4 <= 3
+false
+true and false
+false
+true and true
+true
+true or true
+true
+true or false
+true
+4 < 5 and 6 > 7
+false
+true and 6
+true
+true and 0
+true
+```
+
+> (!) Внимание
+> В **Io** также как и **Ruby** 0 это true
+
+А теперь интересное:
+
+```code
+rue clone
+true
+false clone
+false
+nil clone
+nil
+```
+
+Клонирование чисел, булевых значений и nil интерпритатор вернёт сам обьект. Т.е. true, false и nil - это синглтоны.
+
+Хак! Как создать синглтон
+
+```code
+Io> Highlander := Object clone
+==> Highlander_0x378920:
+type
+= "Highlander"
+Io> Highlander clone := Highlander
+==> Highlander_0x378920:
+clone
+= Highlander_0x378920
+type
+= "Highlander"
+```
