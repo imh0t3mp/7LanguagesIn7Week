@@ -36,3 +36,14 @@ TallyHo description println
 // Создадим и определим метод bell для боъекта
 TallyHo bell := method("Ding-dong!" println)
 TallyHo bell
+
+// Копнём поглубже
+// Для начала, попытаемся вытянуть содержимое метода bell
+
+TallyHo getSlot("bell") println
+
+// А теперь, посмотрим прототип объекта
+
+TallyHo proto println
+
+Lobby println
