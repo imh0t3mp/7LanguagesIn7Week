@@ -3,6 +3,8 @@
 Неделя 2 посвещена изучению языка **Io**
 
 Согласно статье на [Wiki](https://ru.wikipedia.org/wiki/Io) **Io** - чисто объектно ориентированный язык.
+Ещё одна статья на [HabraHabr](https://habr.com/ru/post/28041/)
+Основной источник сведений о языке это [Сайт](https://iolanguage.org/guide/guide.html#Syntax)
 
 Следующий код печатает в консоли «Hello world!» посредством передачи строке сообщения println:
 
@@ -249,3 +251,50 @@ clone
 type
 = "Highlander"
 ```
+
+#### Вы хотите выстрелить себе в ногу? Тогда мы идём к вам!
+
+Io можно любить или ненавидеть, но этот язык достоин существовать. Но, в этом языке очень, до езобразия просто выстрелить себе не в ногу, нет, выстрелить прямо в голову
+
+```Io
+Object clone := "брика бряк"
+```
+
+и вуаля!!!
+
+### домашнее задание
+
+Day 1 Self-Study
+
+> When you’re looking for Io background, searching for answers is going
+to be a little tougher because Io has so many different meanings. I
+recommend Googling for Io language.
+>> Find:
+>> * Some Io example problems
+>> * An Io community that will answer questions
+>> * A style guide with Io idioms
+
+Answer:
+
+> * Evaluate 1 + 1 and then 1 + "one" . Is Io strongly typed or weakly
+typed? Support your answer with code.
+
+> * Is 0 true or false? What about the empty string? Is nil true or false?
+Support your answer with code.
+> * How can you tell what slots a prototype supports?
+> * What is the difference between = (equals), := (colon equals), and ::=
+(colon colon equals)? When would you use each one?
+
+>> ::= - создать слот,создать сеттер,присвоить значение
+
+>> := - создать слот, присвоить значение
+
+>> = - присвоить значение
+
+
+Do:
+
+>> * Run an Io program from a file.
+>> * Execute the code in a slot given its name.
+>Spend a little time playing with slots and prototypes. Make sure you
+understand how prototypes work.
