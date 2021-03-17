@@ -298,3 +298,9 @@ Do:
 >> * Execute the code in a slot given its name.
 >Spend a little time playing with slots and prototypes. Make sure you
 understand how prototypes work.
+
+
+## ChatOps
+
+Провёл интеграцию GitHub+Trello+Slack. Нужно проверить, как оно будет работать 
+
