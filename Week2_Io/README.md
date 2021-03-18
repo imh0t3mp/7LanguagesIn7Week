@@ -434,3 +434,29 @@ mailer deliver
 
 postOffice messageTarget := method(call target)
 ```
+
+Другой пример, определим метод _unless_
+
+```Io
+unless := method(
+    (call sender doMessage(call message argAt(0))) ifFalse(
+    call sender doMessage(call message argAt(1))) ifTrue(
+    call sender doMessage(call message argAt(2)))
+)
+```
+
+А теперь, пытаемся выполнить следующий код:
+
+```Io
+princessButtercup unless(trueLove,("It is false" println), ("It is true" println))
+```
+
+работает это так:
+
+1 - взять значение **_trueLove_**
+2 - если **_trueLove_** (нулевой аргумент) имеет значение _true_
+2.1 - тогда выполнить действие предписанное во втором аргументе
+2.2 - если _false_, выполнить действие предписанное в 1м аргументе
+
+
+### рефлексия
