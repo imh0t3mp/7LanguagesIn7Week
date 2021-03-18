@@ -302,5 +302,6 @@ understand how prototypes work.
 
 ## ChatOps
 
-Провёл интеграцию GitHub+Trello+Slack. Нужно проверить, как оно будет работать 
+Провёл интеграцию GitHub+Trello+Slack. Нужно проверить, как оно будет работать
 
+## День 2 - колбасный король
