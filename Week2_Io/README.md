@@ -554,3 +554,13 @@ slower @@start; faster @@start; fastest @@start; wait(1)
 
 Фича - это результирующий объект, который вернул асинхронный месседж(сообщение) сразу же после старта.
 Если к фиче обратиться до того, как результат будет определён, интерпритатор будет ждать завершения исполнения потока.
+
+### ДЗ
+
+- Enhance the XML program to add spaces to show the indentation
+  structure.
+- Create a list syntax that uses brackets.
+- Enhance the XML program to handle attributes: if the first argu-
+  ment is a map (use the curly brackets syntax), add attributes to
+  the XML program. For example:
+  book({"author": "Tate"}...) would print <book author="Tate"> :
