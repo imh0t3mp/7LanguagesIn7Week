@@ -9,4 +9,4 @@ faster start := method(wait(1); writeln("Faster started"))
 fastest start := method(writeln("Fastest started"))
 
 // Стартуем процедуры паралллельно
-slower @@start; faster @@start; fastest @start; wait(3)
+slower @@start; faster @@start; fastest @@start; wait(1)

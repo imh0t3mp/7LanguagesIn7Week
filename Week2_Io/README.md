@@ -528,3 +528,24 @@ disco ancestors
 @@ - вернёт nil и запустит интерпритацию собщения в своём отдельном потоке
 
 ### акторы (actors)
+
+```Io
+slower := Object clone
+faster := Object clone
+fastest := Object clone
+
+slower start := method(wait(2); writeln("Slower started"))
+faster start := method(wait(1); writeln("Faster started"))
+fastest start := method(writeln("Fastest started"))
+
+// Стартуем процедуры паралллельно
+slower @@start; faster @@start; fastest @@start; wait(1)
+```
+
+Работает этот код вот как.
+1 - запускам параллельно три метода _start_ каждого из объектов.
+
+@@ говорит, что нужно стартовать и немедленно вернуть управление основному потоку.
+
+Но, есть особенность, которая мне пока не понятна. Точнее, не понятно как ее обойти.
+Если из цепочки исполнения убрать финальный wait, то исполнение скрипта закончится до того, как отработают все акторы. И это странно.
