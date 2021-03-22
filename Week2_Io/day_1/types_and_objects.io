@@ -5,7 +5,7 @@ Vessel := Object clone
 Vessel description := "Я просто некоторое судно"
 
 Vessel println
-Vessel slotNames
+Vessel s
 
 "\n==============================" println
 

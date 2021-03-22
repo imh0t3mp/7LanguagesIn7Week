@@ -111,6 +111,7 @@ Io> method("So, you've come for an argument." println)
 "So, you've come for an argument." println
 )
 ```
+
 Вуа-ля, метод готов!
 
 Чтобы просмотреть содержимое слота объекта, нужно его вытащить через _**getSlot**_
@@ -131,13 +132,13 @@ The prototype programming paradigm seems clear enough. These are
 the basic ground rules:
 Итак, парадигменный подход в **Io** определяет следующие базовые моменты:
 
-* Всё есть объект
-* Каждое обращение к объекту это сообщение
-* Вы не создаёте классы, выц клонируете объекты
-* ОБъекты помнят о своих прототипах
-* Объекты имеют слоты
-* Сообщение возвращает значение в слот или вызывает метод в слот
-* Если объект можетответить сообщением, то он отправляет сообщение в его прототип
+- Всё есть объект
+- Каждое обращение к объекту это сообщение
+- Вы не создаёте классы, выц клонируете объекты
+- ОБъекты помнят о своих прототипах
+- Объекты имеют слоты
+- Сообщение возвращает значение в слот или вызывает метод в слот
+- Если объект можетответить сообщением, то он отправляет сообщение в его прототип
 
 ### Коллекции
 
@@ -267,38 +268,38 @@ Object clone := "брика бряк"
 Day 1 Self-Study
 
 > When you’re looking for Io background, searching for answers is going
-to be a little tougher because Io has so many different meanings. I
-recommend Googling for Io language.
->> Find:
->> * Some Io example problems
->> * An Io community that will answer questions
->> * A style guide with Io idioms
+> to be a little tougher because Io has so many different meanings. I
+> recommend Googling for Io language.
+>
+> > Find:
+> >
+> > - Some Io example problems
+> > - An Io community that will answer questions
+> > - A style guide with Io idioms
 
 Answer:
 
-> * Evaluate 1 + 1 and then 1 + "one" . Is Io strongly typed or weakly
-typed? Support your answer with code.
+> - Evaluate 1 + 1 and then 1 + "one" . Is Io strongly typed or weakly
+>   typed? Support your answer with code.
 
-> * Is 0 true or false? What about the empty string? Is nil true or false?
-Support your answer with code.
-> * How can you tell what slots a prototype supports?
-> * What is the difference between = (equals), := (colon equals), and ::=
-(colon colon equals)? When would you use each one?
+> - Is 0 true or false? What about the empty string? Is nil true or false?
+>   Support your answer with code.
+> - How can you tell what slots a prototype supports?
+> - What is the difference between = (equals), := (colon equals), and ::=
+>   (colon colon equals)? When would you use each one?
 
->> ::= - создать слот,создать сеттер,присвоить значение
+> > ::= - создать слот,создать сеттер,присвоить значение
 
->> := - создать слот, присвоить значение
+> > := - создать слот, присвоить значение
 
->> = - присвоить значение
-
+> > = - присвоить значение
 
 Do:
 
->> * Run an Io program from a file.
->> * Execute the code in a slot given its name.
->Spend a little time playing with slots and prototypes. Make sure you
-understand how prototypes work.
-
+> > - Run an Io program from a file.
+> > - Execute the code in a slot given its name.
+> >   Spend a little time playing with slots and prototypes. Make sure you
+> >   understand how prototypes work.
 
 ## ChatOps
 
@@ -364,7 +365,7 @@ for(i,1,5,3,i println,"Alloha!");
 
 #### if
 
-_**If**_ в  **Io** имеет более чётку структуру
+_**If**_ в **Io** имеет более чётку структуру
 
 > if(condition, true code, false code)
 
@@ -393,7 +394,6 @@ It is false.
 **_adOperator_** - добавить оператор
 _**addAssignOperator**_ - добаить оператор сравнения
 
-
 Например, добавим оператор деления с проверкой делителя на 0
 
 ```Io
@@ -415,7 +415,7 @@ Number / := method(n, if(n == 0, "devide by 0" println; 0, self /::(n)))
 - цель (target)
 - аргументы (arguments)
 
-Метод **_call_** даёт дополнительную информацию о ***любом*** сообщении.
+Метод **_call_** даёт дополнительную информацию о **_любом_** сообщении.
 
 ```Io
 //Добавим объект postOffice
@@ -495,25 +495,28 @@ disco ancestors
 
 ### ДЗ
 
-
 1. A Fibonacci sequence starts with two 1s. Each subsequent num-
-ber is the sum of the two numbers that came before: 1, 1, 2, 3,
-5, 8, 13, 21, and so on. Write a program to find the nth Fibonacci
-number. fib(1) is 1, and fib(4) is 3. As a bonus, solve the problem
-with recursion and with loops.
+   ber is the sum of the two numbers that came before: 1, 1, 2, 3,
+   5, 8, 13, 21, and so on. Write a program to find the nth Fibonacci
+   number. fib(1) is 1, and fib(4) is 3. As a bonus, solve the problem
+   with recursion and with loops.
 2. How would you change / to return 0 if the denominator is zero?
 3. Write a program to add up all of the numbers in a two-dimensional
-array.
+   array.
 4. Add a slot called myAverage to a list that computes the average of
-all the numbers in a list. What happens if there are no numbers
-in a list? (Bonus: Raise an Io exception if any item in the list is not
-a number.)
+   all the numbers in a list. What happens if there are no numbers
+   in a list? (Bonus: Raise an Io exception if any item in the list is not
+   a number.)
 5. Write a prototype for a two-dimensional list. The dim(x, y) method
-should allocate a list of y lists that are x elements long. set(x, y,
-value) should set a value, and get(x, y) should return that value.
+   should allocate a list of y lists that are x elements long. set(x, y,
+   value) should set a value, and get(x, y) should return that value.
 6. Bonus: Write a transpose method so that (new_matrix get(y, x)) ==
-matrix get(x, y) on the original list.
+   matrix get(x, y) on the original list.
 7. Write the matrix to a file, and read a matrix from a file.
 8. Write a program that gives you ten tries to guess a random number
-from 1–100. If you would like, give a hint of “hotter” or “colder”
-after the first guess.
+   from 1–100. If you would like, give a hint of “hotter” or “colder”
+   after the first guess.
+
+## День 3 - Парад и другие странные места
+
+asfsad
