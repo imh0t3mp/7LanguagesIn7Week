@@ -13,4 +13,12 @@ Prolog достаточно старый язык.
 3. [Habr](https://habr.com/ru/post/124636/)
 4. [Методички](https://labs-org.ru/programmirovanie-prolog/)
 
+## Установка интерпритатора
+
+Для установки в Ubuntu/Mint/Debian дистрибутивах:
+
+> sudo apt-add-repository ppa:swi-prolog/stable
+> sudo apt update
+> sudo apt install swi-prolog
+
 ## День 1й - превосходный водитель
