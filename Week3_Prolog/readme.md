@@ -60,7 +60,9 @@ prolog
 
 Например, результат работы скрипта _map.pl_ в _**swiprolog**_ отличается от приведённого в учебнике и выглядит так:
 
-> ?- coloring(Alabama, Mississippi, Georgia, Tennessee, Florida).
-> Alabama = blue,
-> Mississippi = Georgia, Georgia = red,
-> Tennessee = Florida, Florida = green
+```prolog
+?- coloring(Alabama, Mississippi, Georgia, Tennessee, Florida).
+Alabama = blue,
+Mississippi = Georgia, Georgia = red,
+Tennessee = Florida, Florida = green
+```
