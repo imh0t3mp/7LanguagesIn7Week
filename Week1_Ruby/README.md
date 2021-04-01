@@ -1,23 +1,56 @@
 # Ruby
 
+<!-- TOC -->
+
+- [1. Установка](#1-установка)
+- [2. Настройка окружения](#2-настройка-окружения)
+  - [2.1. установки](#21-установки)
+  - [2.2. Плагины и прочее](#22-плагины-и-прочее)
+    - [2.2.1. **rubocop**](#221-rubocop)
+    - [2.2.2. **solargraph** + **reek**](#222-solargraph--reek)
+- [3. День 1 - в поисках Няни](#3-день-1---в-поисках-няни)
+  - [3.1. О выводе и, возможно, о вводе данных](#31-о-выводе-и-возможно-о-вводе-данных)
+    - [3.1.1. (!) Замечание о строках](#311--замечание-о-строках)
+    - [3.1.2. unless](#312-unless)
+    - [3.1.3. однострочники или блоки](#313-однострочники-или-блоки)
+  - [3.2. Заданиие](#32-заданиие)
+- [4. День 2 - спустившись с небес (Floating Down from the Sky)](#4-день-2---спустившись-с-небес-floating-down-from-the-sky)
+- [5. Соглашения об именовании](#5-соглашения-об-именовании)
+  - [5.1. Символы](#51-символы)
+  - [5.2. Данные, массивы и прочее](#52-данные-массивы-и-прочее)
+  - [5.3. Блоки кода и yield](#53-блоки-кода-и-yield)
+  - [5.4. Классы](#54-классы)
+  - [5.5. modules](#55-modules)
+    - [5.5.1. include](#551-include)
+    - [5.5.2. prepend](#552-prepend)
+  - [5.6. Задание](#56-задание)
+    - [5.6.1. Find](#561-find)
+    - [5.6.2. Do](#562-do)
+- [6. День 3 - серьезные переменными](#6-день-3---серьезные-переменными)
+  - [6.1. Открытые для модификации классы](#61-открытые-для-модификации-классы)
+  - [6.2. method_missing](#62-method_missing)
+  - [6.3. Задание](#63-задание)
+    - [6.3.1. Do](#631-do)
+
 Неделя 1 посвещена изучению языка **Ruby**
 
-## Установка
+## 1. Установка
 
 Ну, вообще, установка языка не такая уж и сложная. А в случае с большинством **Linux** платформ, **Ruby**, в минимальном варианте конечно, предустановлен из коробки.
 
-## Настройка окружения
+## 2. Настройка окружения
 
 А вот это уже поинтереснее будет.
 
-### 1. установки
+### 2.1. установки
 
 Добавил в settins.json файл блок кода к уже существующему:
 
-```json"[ruby]": {
+```json
+"[ruby]": {
         "editor.formatOnSave": true,
         "editor.formatOnPaste": true,
-        "editor.autoIndent": "advanced",
+        "editor.Indent": "advanced",
         "editor.tabSize": 2
     },
     // Ruby
@@ -41,7 +74,7 @@
 
 Код, по сути, является выдержкой и компиляцией из разных просмотренных на GitHub файлов.
 
-### 2. Плагины и прочее
+### 2.2. Плагины и прочее
 
 Установил плагин [walkme.ruby-extension-pack](https://marketplace.visualstudio.com/items?itemName=walkme.Ruby-extension-pack)
 
@@ -49,20 +82,20 @@
 
 Дополнительно нужно доустановить:
 
-#### **rubocop**
+#### 2.2.1. **rubocop**
 
 > sudo apt install rubocop
 
-#### **solargraph** + **reek**
+#### 2.2.2. **solargraph** + **reek**
 
 > gem install solargraph
 > gem install reek
 
-## День 1 - в поисках Няни
+## 3. День 1 - в поисках Няни
 
 Автор книги, во вступлени к главе о Ruby упоминает Мэри Поппинс - чудесную няню, которая делала жизнь многх детей в Англии лучше и легче, не в последнюю очередь благодаря ложке сахара. И Ruby, для автора, сожержит много синтаксического сахара.
 
-### О выводе и, возможно, о вводе данных
+### 3.1. О выводе и, возможно, о вводе данных
 
 Вывести переменную в строку достаточно просто, но не так просто как, например, в PHP, где конкатернация переменных происходит через оператор точка .
 
@@ -73,7 +106,7 @@ variable = 'Мир!'
 puts "Привет #{variable}"
 ```
 
-#### (!) Замечание о строках
+#### 3.1.1. (!) Замечание о строках
 
 Строки с одинарной кавычкой интерпритируются как есть.
 Строки в двойных кавычках вычисляемые, а это значит, что в такие строки допустимо вставлять значения переменных.
@@ -84,7 +117,7 @@ puts "Привет #{variable}"
  4.methods
 ```
 
-> [:-@, :**, :<=>, :upto, :<<, :<=, :>=, :==, :chr, :===, :>>, :[], :%, :&, :inspect, :+, :ord, :-, :/, :*, :size, :succ, :<, :>, :to_int, :coerce, :divmod, :to_s, :to_i, :fdiv, :modulo, :remainder, :abs, :magnitude, :integer?, :numerator, :denominator, :floor, :ceil, :round, :truncate, :lcm, :to_f, :^, :gcdlcm, :odd?, :even?, :allbits?, :anybits?, :nobits?, :downto, :times, :pred, :pow, :bit_length, :digits, :rationalize, :gcd, :to_r, :next, :div, :|, :~, :+@, :eql?, :singleton_method_added, :i, :real?, :zero?, :nonzero?, :finite?, :infinite?, :step, :positive?, :negative?, :rectangular, :arg, :real, :imaginary,...
+> [:-@, :\*_, :<=>, :upto, :<<, :<=, :>=, :==, :chr, :===, :>>, :[], :%, :&, :inspect, :+, :ord, :-, :/, :_, :size, :succ, :<, :>, :to_int, :coerce, :divmod, :to_s, :to_i, :fdiv, :modulo, :remainder, :abs, :magnitude, :integer?, :numerator, :denominator, :floor, :ceil, :round, :truncate, :lcm, :to_f, :^, :gcdlcm, :odd?, :even?, :allbits?, :anybits?, :nobits?, :downto, :times, :pred, :pow, :bit_length, :digits, :rationalize, :gcd, :to_r, :next, :div, :|, :~, :+@, :eql?, :singleton_method_added, :i, :real?, :zero?, :nonzero?, :finite?, :infinite?, :step, :positive?, :negative?, :rectangular, :arg, :real, :imaginary,...
 
 Для получения класса объекта, нужно вызвать метод _.class_ для объекта
 
@@ -96,11 +129,11 @@ true.class
 
 (!) Ага, **true** и **false** это значения разных классов _**TrueClass**_ и _**FalseClass**_
 
-#### unless
+#### 3.1.2. unless
 
 Интересный оператор _**unless**_, рабоает по правилу **"пока не"**. Впрочем, это самоочевидно из его названия
 
-#### однострочники или блоки
+#### 3.1.3. однострочники или блоки
 
 Ruby позволяет писать как однострочники, так и блоки кода
 
@@ -128,7 +161,7 @@ end
 >
 > true
 
-(!)Что!?
+**_(!)Что!?_**
 
 **Ruby** считается языком сильно типизированным. Это означает, что выполнить, например, вот такой кода
 
@@ -147,25 +180,25 @@ end
 
 > С точки зрения Ruby - всё есть объект. Даже true или 4 - это объекты.
 
-### Заданиие
+### 3.2. Заданиие
 
 - Print the string “Hello, world.”
 - For the string “Hello, Ruby,” find the index of the word “Ruby.”
 - Print your name ten times.
 - Print the string “This is sentence number 1,” where the number 1
-changes from 1 to 10.
+  changes from 1 to 10.
 - Run a Ruby program from a file.
 - **(!)Bonus** problem: If you’re feeling the need for a little more, write
-a program that picks a random number. Let a player guess the
-number, telling the player whether the guess is too low or too high.
+  a program that picks a random number. Let a player guess the
+  number, telling the player whether the guess is too low or too high.
 
 > (Hint: rand(10) will generate a random number from 0 to 9, and
 > gets will read a string from the keyboard that you can translate to
 > an integer.)
 
-## День 2 - спустившись с небес (Floating Down from the Sky)
+## 4. День 2 - спустившись с небес (Floating Down from the Sky)
 
-## Соглашения об именовании
+## 5. Соглашения об именовании
 
 > (!) Внимание
 > Этот блок целиком скопирован из раздела [Wiki](https://ru.wikipedia.org/wiki/Ruby#%D0%A1%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB%D1%8B)
@@ -188,7 +221,7 @@ number, telling the player whether the guess is too low or too high.
 - Суффикс **!** обозначает деструктивный метод класса, то есть такой метод, вызов которого изменяет объект, для которого он вызван.
 - Суффикс **?** обозначает предикат, то есть метод класса, возвращающий логическое значение.
 
-### Символы
+### 5.1. Символы
 
 Символ — это неизменяемая строка. Символьные литералы записываются с префиксом **:** (двоеточие).
 
@@ -202,7 +235,7 @@ puts und[8,6] # ==> day of
 und[7] = ' '  # ОШИБКА! Символы неизменяемы.
 ```
 
-### Данные, массивы и прочее
+### 5.2. Данные, массивы и прочее
 
 Перед работой с массивом, его нужно создать.
 Для создания массива нужно указать, что переменная это массива
@@ -224,7 +257,7 @@ stuff = {:array => [1, 2, 3], :string => 'Hi, Mom!'}
 
 Хмм, где-то я это уже видел? Ааа, конечно, всё очень сильно похоже на **Perl**
 
-### Блоки кода и yield
+### 5.3. Блоки кода и yield
 
 Допустимо писать исполняемые блоки кода без объявления функции. Такие блоки кода можно передавать на вход других функций и методов.
 
@@ -253,7 +286,7 @@ def fall_the_block(&block)
 end
 ```
 
-### Классы
+### 5.4. Классы
 
 Всё - суть объект.
 При создани классов следуют ряду соглашений:
@@ -275,7 +308,8 @@ class Person < Object       # класс Person наследуется от Obje
      @@count_obj += 1        # увеличиваем счётчик на 1
    end
 
-   def <=>(person)           # переопределение оператора <=>
+   def <=>(person\)
+# переопределение оператора <=>
      @age <=> person.age     # из метода возвращается последнее вычисленное выражение
    end
 
@@ -309,7 +343,7 @@ class Person < Object       # класс Person наследуется от Obje
 
 Классы в **Ruby** поддерживают только единичное наследование. Множественное наследование возможно реализовать либо чечрез _модули_ либо через _примеси_
 
-### modules
+### 5.5. modules
 
 _modules_ это коллекции переменных, констант и методов, которые можно переиспользовать, например, при создании своих собственных классов. _modules_ в **Ruby** это эквивалент _interface_ из **Java**
 
@@ -351,7 +385,7 @@ Person.new('matz' ).to_f
 
 Включать модули в классы можно двумя способами:
 
-#### include
+#### 5.5.1. include
 
 ```Ruby
 module A
@@ -372,9 +406,9 @@ test = Test.new
 test.a1
 ```
 
-При подключении модуля с использованием _**include**_, будет производиться поиск методов __сначала__ в классе а __потом__ в модуле.
+При подключении модуля с использованием _**include**_, будет производиться поиск методов **сначала** в классе а **потом** в модуле.
 
-#### prepend
+#### 5.5.2. prepend
 
 ```Ruby
 module A
@@ -395,44 +429,43 @@ test = Test.new
 test.a1
 ```
 
-При подключении модуля с использованием _**prepend**_, будет производиться поиск методов __сначала__ в модуле а __потом__ в классе.
+При подключении модуля с использованием _**prepend**_, будет производиться поиск методов **сначала** в модуле а **потом** в классе.
 
+### 5.6. Задание
 
-### Задание
-
-#### Find
+#### 5.6.1. Find
 
 - Find out how to access files with and without code blocks. What
-is the benefit of the code block?
-ow would you translate a hash to an array? Can you translate
-arrays to hashes?
+  is the benefit of the code block?
+  ow would you translate a hash to an array? Can you translate
+  arrays to hashes?
 - Can you iterate through a hash?
 - You can use Ruby arrays as stacks. What other common data
-structures do arrays support?
+  structures do arrays support?
 
-#### Do
+#### 5.6.2. Do
 
 - Print the contents of an array of sixteen numbers, four numbers
-at a time, using just each . Now, do the same with each_slice in
-Enumerable .
+  at a time, using just each . Now, do the same with each_slice in
+  Enumerable .
 - The Tree class was interesting, but it did not allow you to specify
-a new tree with a clean user interface. Let the initializer accept a
-nested structure with hashes and arrays. You should be able to
-specify a tree like this: {’grandpa’ => { ’dad’ => {’child 1’ => {}, ’child
-2’ => {} }, ’uncle’ => {’child 3’ => {}, ’child 4’ => {} } } }.
+  a new tree with a clean user interface. Let the initializer accept a
+  nested structure with hashes and arrays. You should be able to
+  specify a tree like this: {’grandpa’ => { ’dad’ => {’child 1’ => {}, ’child
+  2’ => {} }, ’uncle’ => {’child 3’ => {}, ’child 4’ => {} } } }.
 - Write a simple grep that will print the lines of a file having any
-occurrences of a phrase anywhere in that line. You will need to do
-a simple regular expression match and read lines from a file. (This
-is surprisingly simple in Ruby.) If you want, include line numbers.
+  occurrences of a phrase anywhere in that line. You will need to do
+  a simple regular expression match and read lines from a file. (This
+  is surprisingly simple in Ruby.) If you want, include line numbers.
 
-## День 3 - серьезные переменными
+## 6. День 3 - серьезные переменными
 
 (!) Хмм
 Каждый язык программирования разработан с какой-то целью и хорош для решения определённых задач. По заявлению автора книги, **Ruby** хорош в задачах _**метапрограммирования**_
 
 > _**Метапрограммирование**_ - это написание программ которые пишут программы.
 
-### Открытые для модификации классы
+### 6.1. Открытые для модификации классы
 
 **Ruby** позволяет переопределить любой, абсолютно любой класс. Можно переопределить даже корневой класс самого языка.
 
@@ -466,16 +499,16 @@ puts 2.feet.forward
 
 **(!) Но, со свободой приходит и ответственность.**
 
-### method_missing
+### 6.2. method_missing
 
-Каждый раз, когда **Ruby** не находит вызываемый метод, происходит вызов специального отладочного метода *method_missing*
+Каждый раз, когда **Ruby** не находит вызываемый метод, происходит вызов специального отладочного метода _method_missing_
 С одной стороны, это замедляет, может замедлять, работу программы. С другой, даёт в руки инструмент для гибкого реагрования на ситуацию.
 
-Но, цена высока. При использовании магии метода *method_missing* мы рассплачиваемся простотой отладки. При неосторожном использовании, можно погрязнуть в дебрях отладки и поиска ошибок.
+Но, цена высока. При использовании магии метода _method_missing_ мы рассплачиваемся простотой отладки. При неосторожном использовании, можно погрязнуть в дебрях отладки и поиска ошибок.
 
-### Задание
+### 6.3. Задание
 
-#### Do
+#### 6.3.1. Do
 
 Modify the CSV application to support an each method to return a
 CsvRow object. Use method_missing on that CsvRow to return the value
